@@ -1,2 +1,2 @@
 # json-server
-A simple way to read and write to a json file using a simple rest api.
+A simple way to read and write to a json file using a simple rest api. Read from it using a get request to localhost:port/api/(dataNumber) and write to it using the same url just with a post and the content you want to write in the body. It has no form of authentication, it should not be used connected to the open internet or for anything that has to be secure. It also can happen that some data gets lost so never use this for any kind of critical application. If theres isn't already a file named data.json it will create it by itself.
