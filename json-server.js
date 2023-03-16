@@ -3,6 +3,7 @@ const app = express();
 const fs = require("fs");
 const PORT = 8081;
 app.use(express.json());
+const maxJsonSize = 1000;
 
 let Table = init();
 
@@ -31,7 +32,7 @@ app.get("/api/:id", (req, res) =>
 app.post("/api/:id", (req, res) =>
 {
     const { id } = req.params;
-    if(id<0 || isNaN(id))
+    if(id<0 || isNaN(id || id>maxJsonSize))
     {
         res.status(400).send("Bad request");
         return;
