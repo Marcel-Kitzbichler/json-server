@@ -32,7 +32,7 @@ app.get("/api/:id", (req, res) =>
 app.post("/api/:id", (req, res) =>
 {
     const { id } = req.params;
-    if(id<0 || isNaN(id || id>maxJsonSize))
+    if(id<0 || isNaN(id) || id>maxJsonSize)
     {
         res.status(400).send("Bad request");
         return;
