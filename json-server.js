@@ -15,6 +15,11 @@ app.listen
 app.get("/api/:id", (req, res) => 
 {
     const { id } = req.params;
+    if (id == "all")
+    {
+        res.status(200).send(Table);
+        return;
+    }
     if (!Table[id]) 
     {
         res.status(404).send("Not found");
@@ -42,4 +47,4 @@ function init()
     let data = JSON.parse(dataraw);
     console.log(data);
     return(data);
-}                           
+}         
