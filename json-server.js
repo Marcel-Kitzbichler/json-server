@@ -26,6 +26,7 @@ app.get("/api/:id", (req, res) =>
         res.status(404).send("Not found");
         return;
     }
+    console.log("Sent "+Table[id]+" from "+id)
     res.status(200).send(Table[id]);
 });
 
@@ -38,7 +39,7 @@ app.post("/api/:id", (req, res) =>
         return;
     }
     Table [id] = req.body;
-    console.log(req.body);
+    console.log("Saved "+req.body+" to "+id);
     fs.writeFileSync("data.json", JSON.stringify(Table));
     res.status(200).send(Table[id]);
 });
