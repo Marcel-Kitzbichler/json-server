@@ -31,6 +31,11 @@ app.get("/api/:id", (req, res) =>
 app.post("/api/:id", (req, res) =>
 {
     const { id } = req.params;
+    if(id<0 || isNaN(id))
+    {
+        res.status(400).send("Bad request");
+        return;
+    }
     Table [id] = req.body;
     console.log(req.body);
     fs.writeFileSync("data.json", JSON.stringify(Table));
