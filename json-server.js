@@ -18,6 +18,7 @@ app.get("/api/:id", (req, res) =>
     const { id } = req.params;
     if (id == "all")
     {
+        console.log("Sent full table to"+req.socket.remoteAddress);
         res.status(200).send(Table);
         return;
     }
@@ -26,7 +27,7 @@ app.get("/api/:id", (req, res) =>
         res.status(404).send("Not found");
         return;
     }
-    console.log("Sent "+Table[id]+" from "+id)
+    console.log("Sent "+Table[id]+" from "+id+" to "+req.socket.remoteAddress);
     res.status(200).send(Table[id]);
 });
 
@@ -39,7 +40,7 @@ app.post("/api/:id", (req, res) =>
         return;
     }
     Table [id] = req.body;
-    console.log("Saved "+req.body+" to "+id);
+    console.log("Saved "+req.body+" to "+id+" from "+req.socket.remoteAddress);
     fs.writeFileSync("data.json", JSON.stringify(Table));
     res.status(200).send(Table[id]);
 });
@@ -52,6 +53,6 @@ function init()
     }
     let dataraw = fs.readFileSync("data.json");
     let data = JSON.parse(dataraw);
-    console.log(data);
+    //console.log(data);
     return(data);
 }         
