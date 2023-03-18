@@ -36,6 +36,15 @@ app.get("/api/:id", (req, res) =>
 app.post("/api/:id/:key", (req, res) =>
 {
     const { id } = req.params;
+    const { key } = req.params;
+    if(Auth[id])
+    {
+        if(typeof(Auth[id].key) != "undefined" && Auth[id].key != key)
+        {
+            res.status(401).send("Unauthorized");
+            return;
+        }
+    }
     if(id<0 || isNaN(id) || id>maxJsonSize)
     {
         res.status(400).send("Bad request");
