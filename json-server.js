@@ -5,7 +5,9 @@ const PORT = 8081;
 app.use(express.json());
 const maxJsonSize = 1000;
 
-let Table = init();
+let Table = initTable();
+
+let Auth = initAuth();
 
 app.listen
 (
@@ -45,7 +47,7 @@ app.post("/api/:id", (req, res) =>
     res.status(200).send(Table[id]);
 });
 
-function init() 
+function initTable() 
 {
     if(!fs.existsSync("data.json"))
     {
@@ -55,4 +57,15 @@ function init()
     let data = JSON.parse(dataraw);
     //console.log(data);
     return(data);
-}         
+}  
+
+function initAuth()
+{
+    if(!fs.existsSync("auth.json"))
+    {
+        fs.writeFileSync("auth.json", JSON.stringify([]));
+    }
+    let authraw = fs.readFileSync("auth.json");
+    let authreading = JSON.parse(authraw);
+    return(authreading);
+}  
