@@ -105,3 +105,6 @@ dist
 
 #my current Database
 data.json
+
+#my Auth file
+auth.json
