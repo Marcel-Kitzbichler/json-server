@@ -1,12 +1,14 @@
 const express = require("express");
 const app = express();
 const fs = require("fs");
-const PORT = 8081;
 app.use(express.json());
+
+
 const maxJsonSize = 1000;
+const PORT = 8081;
+
 
 let Table = initTable();
-
 let Auth = initAuth();
 
 app.listen
