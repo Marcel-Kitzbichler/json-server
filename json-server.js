@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const fs = require("fs");
+var sha256 = require('js-sha256');
 app.use(express.json());
 
 
@@ -41,7 +42,7 @@ app.post("/api/:id/:key", (req, res) =>
     const { key } = req.params;
     if(Auth[id])
     {
-        if(typeof(Auth[id].key) != "undefined" && Auth[id].key != key)
+        if(typeof(Auth[id].key) != "undefined" && sha256(key) != Auth[id].key)
         {
             res.status(401).send("Unauthorized");
             return;
@@ -80,3 +81,5 @@ function initAuth()
     let authreading = JSON.parse(authraw);
     return(authreading);
 }  
+
+
