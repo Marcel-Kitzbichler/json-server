@@ -36,7 +36,7 @@ app.get("/api/:id", (req, res) =>
     res.status(200).send(Table[id]);
 });
 
-app.post("/api/:id/:key", (req, res) =>
+app.post("/api/:id/:key?", (req, res) =>
 {
     const { id } = req.params;
     const { key } = req.params;
